@@ -3,9 +3,9 @@
       <user></user>
   <div class="header-warpper">
     <i class="menu icon-menu icon" @click="showuser"></i>
-    <div class="middle" @click="classchange">
-      <router-link  :to="{name:'musicdetails'}" class="router">
-        <i class="music icon-music icon active"></i>
+    <div class="middle" >
+      <router-link  :to="{name:'musicdetails'}" class="router" active-class="active">
+        <i class="music icon-music icon"></i>
       </router-link>
       <router-link  :to="{name:'findmusic'}" class="router">
         <i class="find icon-wangyi icon"></i>
@@ -39,13 +39,6 @@
           }
         },
       methods:{
-        classchange(e) {
-          let aI = document.getElementsByTagName("i")
-          for (let i = 0, length = aI.length; i < length; i++) {
-            aI[i].classList.remove('active')
-          }
-          e.srcElement.classList.add('active')
-        },
         showuser(){
           this.$store.state.useriff=true
         }
@@ -84,8 +77,9 @@
       font-size: 28px;
       color: #fff;
     }
-    .active{
+    .active > i{
       color:#ccafaf
     }
   }
+
 </style>
