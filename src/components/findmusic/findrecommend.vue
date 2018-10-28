@@ -1,9 +1,8 @@
 <template>
-    <div>
+    <div class="mb">
       <div class="header"></div>
-      <div class="commonList" @click="nameChange">
-        <com-hd to="findmusic" title="个性推荐" class="active"></com-hd>
-        <com-hd to="findmusic" title="歌单"></com-hd>
+      <div class="commonList">
+        <com-hd to="findmusic" title="个性推荐" active-class="active"></com-hd>
         <com-hd to="musicdetails" title="主播电台"></com-hd>
         <com-hd to="musicdetails" title="排行榜"></com-hd>
       </div>
@@ -50,8 +49,6 @@
         </div>
         </div>
       </div>
-
-
     </div>
 </template>
 
@@ -80,23 +77,22 @@
           "com-hd":commonList
       },
       methods:{
-        nameChange(e){
-          let commonList = document.querySelector(".commonList")
-          let child = commonList.children
-          for (let i = 0, length = child.length; i < length; i++) {
-            child[i].classList.remove("active")
-          }
-          e.srcElement.classList.add("active")
-        },
+        // nameChange(e){
+        //   let commonList = document.querySelector(".commonList")
+        //   let child = commonList.children
+        //   for (let i = 0, length = child.length; i < length; i++) {
+        //     child[i].classList.remove("active")
+        //   }
+        //   e.srcElement.classList.add("active")
+        // },
 
       }
     }
 </script>
 
 <style scoped lang="less">
-  @rem:750/10rem;
   .header{
-    height:100/@rem;
+    height:50px;
   }
   .commonList{
     display: flex;
@@ -109,7 +105,7 @@
   .swipe{
     position:relative;
     width:100%;
-    height: 320/@rem;
+    height: 400px;
     img{
       width:100%;
       height:100%;
@@ -118,9 +114,9 @@
       position: absolute;
       right:0;
       bottom: 0;
-      width:100/@rem;
-      height: 50/@rem;
-      line-height: 50/@rem;
+      width:50px;
+      height: 25px;
+      line-height: 25px;
       text-align: center;
       color:#fff;
       font-size: 14px;
@@ -130,18 +126,18 @@
     display: flex;
     div{
       flex: 1;
-      padding: 0 20/@rem;
+      padding: 0 10px;
+      text-align: center;
     .icon-type{
       display: inline-block;
       color: #c62f2f;
-      font-size: 64/@rem;
-      width: 100/@rem;
-      height: 100/@rem;
-      line-height: 100/@rem;
-      text-align: center;
+      font-size: 32px;
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
       border: 1px solid #c62f2f;
       border-radius: 50%;
-      margin: 30/@rem 0 0 60/@rem;
+      margin-top:15px;
     }
       .title{
         font-size: 14px;
@@ -151,22 +147,22 @@
   }
   .findsheettitle{
     position: relative;
-    height: 70/@rem;
-    font-size: 32/@rem;
+    height: 35px;
+    font-size: 16px;
 
     span{
       display: inline-block;
-      height: 36/@rem;
+      height: 18px;
       line-height: 18px;
       font-weight: 400;
-      padding-left:30/@rem;
+      padding-left:15px;
     }
     span:before{
       content: '';
       position: absolute;
       top: 0;
       left: 0;
-      height: 36/@rem;
+      height:18px;
       width: 3px;
       background: #c62f2f;
     }
@@ -174,8 +170,9 @@
   .recommend{
     .MinSheets{
       float: left;
-      width: 250/@rem;
-      height: 400/@rem;
+      width:33%;
+      height: auto;
+      margin-right: 2px;
       a{
         width: 100%;
         height: 100%;
@@ -186,12 +183,13 @@
         }
         p{
           margin: 0;
-          padding: 0 6/@rem;
+          padding: 0 3px;
           height: 20%;
           font-size: 14px;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
+          padding-bottom: 20px;
         }
       }
     }

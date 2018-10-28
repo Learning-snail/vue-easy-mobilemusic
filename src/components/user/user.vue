@@ -83,7 +83,6 @@
 </script>
 
 <style scoped lang="less">
-  @rem:750/10rem;
   #user{
     position: absolute;
     top: 0;
@@ -94,15 +93,14 @@
     background:rgba(0,0,0,0.5);
     .left{
       overflow: hidden;
-      margin-top: -76/@rem;
+      margin-top: -38px;
       height: 100%;
-      width: 80%;
+      width: 23%;
       background-color: #fff;
       .bg{
-
         position: relative;
         width: 100%;
-        height: 400/@rem;
+        height: 200px;
         background-size:cover;
         .userinfo{
           position: absolute;
@@ -110,7 +108,7 @@
           left: 0;
           width: 100%;
           height: 50%;
-          padding-left:40/@rem;
+          padding-left:20px;
           font-size: 16px;
           color: #fff;
           .avatar{
@@ -119,10 +117,10 @@
           }
           p{
             display: inline-block;
-            margin:5/@rem 0 ;
+            margin:2px 0 ;
             font-weight: 500;
             vertical-align: middle;
-            max-width: 260/@rem;
+            max-width: 180px;
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden
@@ -134,7 +132,7 @@
           }
           .progress{
             font-size: 8px;
-            padding: 2/@rem 8/@rem;
+            padding:1px 4px;
             border-radius: 8px;
             color: #fff;
             font-weight: 400;
@@ -144,12 +142,12 @@
           }
           .sign{
             display: inline-block;
-            height: 28/@rem;
+            height: 14px;
             position: absolute;
-            bottom: 38/@rem;
-            font-size: 24/@rem;
-            right: 60/@rem;
-            padding: 8/@rem 16/@rem;
+            bottom: 19px;
+            font-size: 12px;
+            right: 30px;
+            padding: 4px 8px;
             border: 1px solid #e1e1e1;
             border-radius: 12px;
             color: #fff;
@@ -164,21 +162,21 @@
         p{
           margin: 0;
           background:#f0f0f0;
-          height:10/@rem;
+          height:5px;
           border:1px solid #eee
         }
       }
       .footer{
         position:fixed;
         bottom:0;
-        height:80/@rem;
-        width:80%;
+        height:40px;
+        width:23%;
         display: flex;
         background-color: #fff;
         div{
           font-size:16px;
           height:100%;
-          padding: 20/@rem;
+          padding: 10px;
           color: #000;
           i{
             font-size:18px;

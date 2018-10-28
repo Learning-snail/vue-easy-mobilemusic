@@ -12,12 +12,11 @@
 </script>
 
 <style scoped lang="less">
-  @rem:750/10rem;
   .commonlist{
-    height: 70/@rem;
+    height: 35px;
     font-size: 14px;
     flex: 1;
-    line-height: 70/@rem;
+    line-height: 35px;
     text-align: center;
   }
 

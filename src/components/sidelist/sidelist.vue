@@ -22,20 +22,19 @@
 </script>
 
 <style lang="less" scoped>
-  @rem:750/10rem;
   .sidelist{
     position:relative;
     width:100%;
-    height:80/@rem;
-    line-height:80/@rem;
+    height:40px;
+    line-height:40px;
     font-size:0;
-    padding:0 30/@rem;
+    padding:0 15px;
     .icon,.title{
       display:inline-block;
       vertical-align:middle;
     }
     .icon{
-      font-size:32/@rem;
+      font-size:16px;
       margin-right:6px;
       color:#9a9a9a;
     }
@@ -45,7 +44,7 @@
     }
     .disc{
       position:absolute;
-      right:90/@rem;
+      right:45px;
       font-weight:400;
       top:50%;
       transform:translate3d(0,-50%,0);

@@ -16,12 +16,21 @@ let store =new Vuex.Store({
       musicIndex:0, //歌曲的位置
       musicSrc:"",//歌曲的src
       useriff:false,
-      type:0
+      type:0,
+      lyric:[]//获取歌词
     },
     mutations:{
+      //获取歌词
+      set_lyric(state){
+        state.infoall.music.all.forEach(item=>{
+          if( item.id === state.musicid){
+            state.lyric=item.lyric
+          }
+        })
+      },
       //歌曲的路径
-      set_musicSrc(state,src){
-        state.musicSrc=src
+      set_musicSrc(state,url){
+        state.musicele.setAttribute('src', url)
       },
       //歌曲的位置
       musicIndex(state,index){
@@ -44,6 +53,7 @@ let store =new Vuex.Store({
           state.musicIndex = 0
         }
         state.sheetsinfo=state.sheetsList[state.musicIndex]
+        state.musicid=state.sheetsinfo.id
         state.musicele.setAttribute('src', state.sheetsList[state.musicIndex].url)
         state.musicele.load()
         if( !state.iff ){
@@ -60,13 +70,16 @@ let store =new Vuex.Store({
         state.sheetsinfo=state.sheetsList[state.musicIndex]
         state.musicele.setAttribute('src', state.sheetsList[state.musicIndex].url)
         state.musicele.load()
+        state.musicid=state.sheetsinfo.id
         if( !state.iff ){
           state.iff=true
         }
       },
       //设置总时间
-      set_time(state,duration){
-          state.duration=duration
+      set_time(state){
+        state.musicele.oncanplay = function () {
+          state.duration=state.musicele.duration
+        }
       },
       //设置目前时长
       set_currentTime(state,currentTime){
@@ -107,9 +120,6 @@ let store =new Vuex.Store({
       //改变底部播放器的状态
       set_show(state){
         state.show=true
-      },
-      set_hide(state){
-        state.show=false
       },
       set_id(state,id){
         state.musicid=id

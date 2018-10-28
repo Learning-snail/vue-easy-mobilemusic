@@ -1,6 +1,5 @@
 <template>
   <div>
-    <audio ref="audio" @timeupdate="musicTimeUpdate"  id="audio" autoplay></audio>
     <div class="top">
       <hd-back title="歌单"></hd-back>
       <img :src=imgUrl alt="">
@@ -47,26 +46,16 @@
         },
       methods:{
         show(item,index){
-          //判断原来存在的音乐节点，有则让他暂停
-          if( this.$store.state.musicele ){
-            //让暂停和播放的状态恢复到原来
-              this.$store.commit("pause")
-              this.$store.state.iff=true
-          }
-          let audio=document.getElementById("audio")
-          audio.src=item.url
+          if( this.musicid===item.id )return
           this.$store.commit("set_sheetsinfo",item)
           this.$store.commit("set_show")
           this.$store.commit("set_id",item.id)
-          this.$store.commit('set_musicele',audio)
           this.$store.commit('set_sheetsList',this.sheets.info)
           this.$store.commit('musicIndex',index)
-
+          this.$store.commit("set_musicSrc",item.url)
+          this.$store.commit('set_time')
+          this.$store.commit("play")
         },
-        musicTimeUpdate(){
-          this.$store.state.current=this.musicele.currentTime
-        },
-
       },
         created(){
           let id = this.$route.query.id
@@ -86,9 +75,8 @@
 </script>
 
 <style scoped lang="less">
-  @rem:750/10rem;
   .top{
-    height: 500/@rem;
+    height: 380px;
     img{
       position: relative;
       top: 0;
@@ -99,7 +87,7 @@
     }
   }
   .musicall{
-    padding: 10/@rem 10/@rem 0 10/@rem;
+    padding: 5px 5px 0 5px;
     border-bottom: 1px solid #eeefef;
     font-size: 16px;
     .text{
@@ -113,20 +101,20 @@
   }
   .musiclist{
     a{
-      height: 100/@rem;
+      height: 50px;
       display: flex;
       color:#ccc;
       .number{
         font-size: 14px;
-        padding:10/@rem 50/@rem 0 10/@rem;
+        padding:5px 25px 0 5px;
       }
       .content{
-        padding: 20/@rem 0;
+        padding:10px 0;
         border-bottom: 1px solid #eeefef;
         font-size: 14px;
         .name{
           color:#333;
-          margin-bottom: 6/@rem;
+          margin-bottom: 3px;
         }
 
         p{

@@ -37,25 +37,24 @@
 </script>
 
 <style scoped lang="less">
-  @rem:750/10rem;
   .header{
     position: fixed;
     top:0;
     left:0;
     width: 100vw;
-    height: 100/@rem;
-    font-size: 40/@rem;
-    padding:20/@rem 20/@rem;
+    height: 50px;
+    font-size: 20px;
+    padding:10px 10px;
     z-index: 2;
     color:#fff;
     .back{
-      margin:20/@rem 20/@rem;
+      margin:10px;
     }
     .search{
       position: fixed;
-      top:20/@rem;
-      right: 30/@rem;
-      font-size: 50/@rem;
+      top:10px;
+      right: 15px;
+      font-size: 25px;
     }
     }
 

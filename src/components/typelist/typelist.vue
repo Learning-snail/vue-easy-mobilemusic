@@ -14,9 +14,8 @@
 </script>
 
 <style scoped lang="less">
-  @rem:750/10rem;
   .typelist{
-    height:100/@rem;
+    height:50px;
     border-bottom: 1px solid #ccc;
     .title{
       font-size: 16px;

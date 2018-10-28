@@ -31,19 +31,18 @@
           'music-sheet':musicsheet
       },
       created(){
-          this.$ajax.get('')
+
       },
 
     }
 </script>
 
 <style scoped lang="less">
-  @rem:750/10rem;
   .mb{}
   .icon{
-    padding-left: 20/@rem;
+    padding-left: 10px;
     font-size: 20px;
-    line-height: 100/@rem;
+    line-height: 50px;
     color:#aaa;
     background: rgb(247, 247, 247);
   }

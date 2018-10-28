@@ -8,7 +8,7 @@
         </div>
       </router-link>
       <i class="playPause"  @click="iff?pause():play()" :class="iff? 'icon-pause-detail': 'icon-playdetail'"></i>
-      <i></i>
+      <!--<i></i>-->
     </div>
 </template>
 
@@ -41,20 +41,19 @@
 </script>
 
 <style scoped lang="less">
-  @rem:750/10rem;
   .foot{
     width: 100%;
-    height:80/@rem;
+    height:40px;
     background-color: #fff;
     display: flex;
     .box{
-      width: 590/@rem;
+      width: 90%;
       height: 100%;
       display: flex;
       .img{
-        padding: 10/@rem 20/@rem 0;
-        width:78/@rem;
-        height: 78/@rem;
+        padding: 5px 10px 0;
+        width:39px;
+        height: 39px;
       }
     }
     .content {
@@ -62,8 +61,12 @@
       font-size: 12px;
       .name {
         color: #333;
-        margin: 6/@rem 0;
+        margin:3px 0;
       }
+    }
+    .playPause{
+      font-size: 40px;
+      cursor: pointer;
     }
     p{
       margin: 0;

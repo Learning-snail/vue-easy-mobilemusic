@@ -48,13 +48,12 @@
 </script>
 
 <style scoped lang="less">
-  @rem:750/10rem;
   .header{
     position: absolute;
     top:0;
     left: 0;
     width: 100%;
-    height: 100/@rem;
+    height: 50px;
     background-color: #c62f2f;
     .header-warpper{
       height: 100%;
@@ -62,10 +61,21 @@
       justify-items: center;
       justify-content: space-between;
       .middle{
-        height:100%
+        width: 200px;
+        height:100%;
+        display: flex;
+        a{
+          flex: 1;
+          display: block;
+          height: 100%;
+          i{
+            display: block;
+            margin-top: 10px;
+          }
+      }
       }
       .menu,.search{
-        padding-top: 24/@rem;
+        padding-top: 12px;
       }
     }
     .icon {

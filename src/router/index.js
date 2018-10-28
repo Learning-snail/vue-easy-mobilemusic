@@ -21,6 +21,7 @@ Vue.component('ftMusic',foot)
 Vue.component('user',user)
 Vue.component('sidelist',sidelist)
 export default new Router({
+  linkActiveClass:'active',
   routes: [
     {
       path: '/',

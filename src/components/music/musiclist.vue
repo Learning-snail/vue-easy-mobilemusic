@@ -1,9 +1,7 @@
 <template>
       <div class="songList">
-        <audio ref="audio" @timeupdate="musicTimeUpdate" @play="musicPlay" @ended="musicend" :src="musicSrc" id="audio" autoplay></audio>
           <hd-back :title="sheetsinfo.name"></hd-back>
-        <div class="imgbc">
-          <img :src='sheetsinfo.img_url' alt="" class="songimg" width="100%" height="100%">
+        <div class="imgbc" :style="{backgroundImage:'url('+sheetsinfo.img_url+')'}">
         </div>
         <div class="cdbg">
           <i class="orign"></i>
@@ -93,15 +91,6 @@
           }
           return className
         },
-        musicend(){
-          this.$store.commit("next")
-        },
-        musicTimeUpdate(){
-          this.$store.state.current=this.musicele.currentTime
-        },
-        musicPlay(){
-          this.$store.commit("set_time",this.musicele.duration)
-        },
         ...mapMutations([
           "pause",
           "play",
@@ -131,18 +120,21 @@
           moveWidth=Math.max(0,moveWidth)
           moveWidth=moveWidth/line.clientWidth*100
           this.movewidth=moveWidth
-        },
-        touchend(){
           this.movewidth= this.movewidth/100*this.duration
           this.$store.state.current=this.movewidth
+        },
+        touchend(){
           this.$store.commit("set_current")
         },
         next(){
           this.$store.commit("next")
-
+          this.$store.commit("set_time")
+          this.$store.commit("set_lyric")
         },
         prev(){
           this.$store.commit("prev")
+          this.$store.commit("set_time")
+          this.$store.commit("set_lyric")
         }
 
       },
@@ -153,86 +145,47 @@
           this.$store.commit('set_sheetsList',item.songList)
           this.$store.commit('musicIndex',0)
         }
-        if( this.musicid===id ){
-          this.iffid=true
-        }
-        this.$store.commit("set_id",id)
         this.$ajax.get('../../static/data.json')
           .then(res=>{
             res.data.music.all.forEach(item=>{
-              if( item.id===id ){
+              if(this.musicid!==id&& item.id===id &&this.iffid===false){
                 this.$store.commit("set_sheetsinfo",item)
                 this.$store.commit("set_musicSrc",item.url)
+                this.$store.commit("set_time")
+                this.$store.commit("set_id",id)
+                this.$store.commit("set_lyric")
               }
             })
-
           })
-
       },
       mounted(){
-        if( this.$store.state.musicele ){
-          if( this.$store.state.iff   ){
-            this.$store.commit("pause")
-            this.$store.state.iff=true
-          }else{
-            this.$store.commit("pause")
-          }
-
-        }
-        let audio = document.getElementById("audio");
-        this.$store.commit('set_musicele',audio)
-        if( this.iffid ){
-          this.$store.commit("set_current")
-          if( !this.$store.state.iff ){
-            audio.removeAttribute("autoplay")
-            this.$store.commit("pause")
-          }
-        }else{
-          this.$store.state.iff=true
-        }
-
         //刷新返回首页
         let that=this
         window.addEventListener('load', function () {
           that.$router.push("/music")
-          that.$store.commit("pause")
+          that.iffid=true
         })
         },
-      beforeCreate(){
-        this.$store.commit("set_hide")
-      },
-      beforeDestroy(){
-        this.$store.commit("set_show")
-        if( this.iff ){
-            this.$store.commit("play")
-          this.$store.state.iff=true
         }
-        }
-    }
 </script>
 
 <style scoped lang="less">
-  @rem:750/10rem;
   .songList{
-    overflow: hidden;
+    position: relative;
+    z-index:2;
     height: 100vh;
-    width: 100vw;
+    overflow: hidden;
     .imgbc{
-      overflow: hidden;
-      width: 100%;
       height: 100%;
-      .songimg{
-        filter: blur(40px);
-        transform: scale(1.5);
-      }
+      overflow: hidden;
+     background-size:cover ;
     }
-
     .cdbg{
       position: absolute;
-      top:120/@rem;
+      top:60px;
       left:0;
       width: 100%;
-      height: 800/@rem;
+      height: 400px;
       .orign{
         display: block;
         width: 80%;
@@ -242,58 +195,60 @@
       }
       .pause{
         position: relative;
-        width: 180/@rem;
-        height: 280/@rem;
+        width: 90px;
+        height: 140px;
         background-image: url('/static/images/swith.png');
         background-size: cover;
         margin: 0 auto;
         transform-origin: 0 0;
-        z-index: 1;
         transition: .3s;
+        z-index: 2;
       }
       .cd{
         width: 44vh;
         height: 44vh;
         position: absolute;
-        top: 140/@rem;
-        left: 92/@rem;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
         transform: translate3d(0, 0, 0);
         background: url('/static/images/cd-mine.png');
         background-size: 100%;
         img{
-          width:62%;
-          height: 62%;
+          width: 64%;
+          height: 64%;
           border-radius: 50%;
-          margin: 110/@rem;
+          margin: 50px
         }
       }
       .common{
         position: absolute;
         left: 0;
-        bottom: 0;
+        bottom: -20px;
         width: 100%;
-        height: 80/@rem;
+
         display: flex;
         i{
           flex: 1;
-          height: 100%;
-          margin-top: 80/@rem;
           text-align: center;
+          font-size: 30px;
         }
       }
     }
     .time{
       display: flex;
       position: absolute;
-      left: 20/@rem;
-      bottom: 100/@rem;
+      left: 10px;
+      bottom: 50px;
       width: 90%;
-      height: 80/@rem;
+      height: 40px;
       .line{
         position: relative;
         display: block;
         width: 80%;
-        height: 4/@rem;
+        height: 2px;
         background: rgba(244,244,244,0.3);
         .currentline{
           display: block;
@@ -301,17 +256,16 @@
           top:50%;
           left:0;
           width: 0;
-          height: 4/@rem;
+          height: 2px;
           background-color: red;
-          z-index: 1;
         }
         .ball{
           display: block;
           position: absolute;
-          top:-12/@rem;
+          top:-6px;
           left: 0;
-          width: 28/@rem;
-          height: 28/@rem;
+          width: 14px;
+          height: 14px;
           background: #fff;
           border-radius: 50%;
           cursor: pointer;
@@ -320,22 +274,24 @@
       p{
         width: 20%;
         height: 100%;
-        font-size: 24/@rem;
+        font-size: 14px;
         color: rgba(255,255,255,0.8);
-        margin:-10/@rem 0 0 0;
+        margin:-5px 0 0 0;
         text-align: center;
       }
     }
     .musicDetailCtrl{
       display: flex;
       position: absolute;
-      left:0/@rem;
+      left:0;
       bottom: 0;
       width: 100%;
-      height: 130/@rem;
+      height: 75px;
       i{
         flex: 1;
-        margin-left: 20/@rem;
+        margin-left: 10px;
+        text-align: center;
+        font-size: 40px;
       }
     }
   }

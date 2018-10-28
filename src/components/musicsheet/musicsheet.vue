@@ -40,40 +40,39 @@
 </script>
 
 <style scoped lang="less">
-  @rem:750/10rem;
   .top{
     position: relative;
-    height: 56/@rem;
+    height: 28px;
     background-color: #e1e1e1;
     .icon,.title,.count{
       position: absolute;
       top:30%;
-      left:50/@rem;
+      left:25px;
       font-size: 12px;
       //line-height: 28/@rem;
     }
     .icon{
       transition: .3s;
-      left:20/@rem;
+      left:10px;
       transform: rotate(-90deg);
     }
     .count{
-      left:200/@rem;
+      left:100px;
     }
 
   }
   .detail{
-    height: 120/@rem;
+    height: 60px;
     border: 1px solid #e3e4e4;
     background-color: #f3f3f3;
     img{
-      width:100/@rem;
-      height:100/@rem;
-      margin: 10/@rem 0 0 10/@rem;
+      width:50px;
+      height:50px;
+      margin: 5px 0 0 5px;
     }
     .name{
       font-size: 12px;
-      margin-left: 20/@rem;
+      margin-left: 10px;
     }
   }
   .hidden{
